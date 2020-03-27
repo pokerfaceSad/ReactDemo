@@ -1,40 +1,32 @@
-import React from 'react';
 import 'semantic-ui-css/semantic.min.css'
 
-function App() {
-  const todoList = [
-    'play game',
-    'go shopping'
-  ]
-  return (
-    <div className="App">
-      <div className="ui two column centered grid container">
-          <div className="row"/>
-          <div className="column">
-            <div className="ui center aligned huge icon header">
-              <i className="circular edit outline icon"></i>
-              Todo Lists
-            </div>
-            <div className="ui huge middle aligned selection relaxed divided list">
-              <div className="item">
-                <i className="ui circle outline icon"></i>
-                <div className="content">
-                  Learning GoLang
-                </div>
+
+import TodoListHeader from './TodoListHeader'
+import TodoList from './TodoList'
+import InputModal from "./InputModal";
+import './style.css'
+import React, { Component } from 'react';
+
+class App extends Component {
+  show_input_modal = () => {
+    console.log("Test")
+    this.refs.input_modal.setState({open: true})
+  }
+  render() {
+    return (
+          <div className="App">
+              <div className="ui one column centered relaxed grid container">
+                  <div className="row"/>
+                  <div className="row"/>
+                  <div className="border-1 ten wide column">
+                    <TodoListHeader show_input_modal={this.show_input_modal}/>
+                    <TodoList />
+                  </div>
               </div>
-              <div className="item"> 
-                <i className="ui circle outline icon"></i>
-                <div className="content">
-                  Learning Node.JS
-                </div>
-              </div>
-            </div>
+              <InputModal ref='input_modal'/>
           </div>
-
-      </div>
-
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
