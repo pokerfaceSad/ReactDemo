@@ -3,10 +3,12 @@ import ListItem from './ListItem'
 class TodoList extends Component {
     
     render() {
-        console.log("TodoList rending")
         return (
             <div className="ui huge middle aligned selection relaxed divided list">
-                {this.props.todoListContents.map(item => <ListItem key={item.content} item={item}/>)}
+                {this.props.todoListContents.map((item, index) => {
+                    return <ListItem mark_item_done={this.props.mark_item_done} key={index} index={index} item={item}/>
+                    })
+                }
             </div>
         );
     }

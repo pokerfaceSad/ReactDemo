@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
 
 class TodoListHeader extends Component {
     state = {header_content : "Todo Lists",
