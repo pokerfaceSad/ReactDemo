@@ -2,14 +2,33 @@ import 'semantic-ui-css/semantic.min.css'
 
 
 import TodoListHeader from './TodoListHeader'
+import TodoListHeader2 from './TodoListHeader2'
 import TodoList from './TodoList'
 import InputModal from "./InputModal";
 import './style.css'
 import React, { Component } from 'react';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todoListContents: [
+        {content: 'Learning GoLang', done: true},
+        {content: 'Learning Node.JS', done: false},
+        ]
+    }
+  }
+
+  add_todo_item = (todo_item) => {
+    const new_todoListContent = [
+      ...this.state.todoListContents,
+      {content: todo_item, done: false}
+    ]
+    this.setState({todoListContents: new_todoListContent})
+    console.log(this.state)
+  }
+
   show_input_modal = () => {
-    console.log("Test")
     this.refs.input_modal.setState({open: true})
   }
   render() {
@@ -20,10 +39,10 @@ class App extends Component {
                   <div className="row"/>
                   <div className="border-1 ten wide column">
                     <TodoListHeader show_input_modal={this.show_input_modal}/>
-                    <TodoList />
+                    <TodoList todoListContents={this.state.todoListContents}/>
                   </div>
               </div>
-              <InputModal ref='input_modal'/>
+              <InputModal add_todo_item={this.add_todo_item} ref='input_modal'/>
           </div>
     );
   }

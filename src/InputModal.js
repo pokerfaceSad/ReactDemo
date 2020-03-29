@@ -2,8 +2,28 @@ import React, { Component } from 'react';
 import { Button, Input, Modal } from 'semantic-ui-react'
 
 class InputModal extends Component {
-    state = { open: false }
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            input_content: '',
+            open: false
+        }
+        
+    }
+    
+    handleInputChange = (event) => {
+        this.setState(
+            {input_content: event.target.value}
+        )
+    }
+    add_item = () => {
+        this.props.add_todo_item(this.state.input_content)
+        this.setState({
+            input_content: '',
+            open: false
+        })
+    }
+    
     close = () => { this.setState({open: false})}
     render() {
         const { open } = this.state
@@ -15,7 +35,13 @@ class InputModal extends Component {
                 >
                     <Modal.Header>Input</Modal.Header>
                     <Modal.Content>
-                    <Input focus size='huge' fluid placeholder='Please Input Your To-do' />
+                    <Input  
+                        focus
+                        value={this.state.input_content}
+                        onChange={this.handleInputChange}
+                        size='huge'
+                        fluid placeholder='Please Input Your To-do'
+                    />
                     </Modal.Content>
                     <Modal.Actions>
                     <Button
@@ -27,6 +53,7 @@ class InputModal extends Component {
                         onClick={this.close}
                         positive
                         labelPosition='right'
+                        onClick={this.add_item}
                         icon='checkmark'
                         content='Add'
                     />

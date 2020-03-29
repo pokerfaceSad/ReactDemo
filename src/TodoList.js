@@ -3,13 +3,10 @@ import ListItem from './ListItem'
 class TodoList extends Component {
     
     render() {
-        const todoList = [
-            {content: 'Learning GoLang', done: true},
-            {content: 'Learning Node.JS', done: false},
-            ];
+        console.log("TodoList rending")
         return (
             <div className="ui huge middle aligned selection relaxed divided list">
-                {todoList.map(item => <ListItem key={item.content} item={item}/>)}
+                {this.props.todoListContents.map(item => <ListItem key={item.content} item={item}/>)}
             </div>
         );
     }
