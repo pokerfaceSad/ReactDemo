@@ -18,13 +18,13 @@ class InputModal extends Component {
     }
     add_item = () => {
         this.props.add_todo_item(this.state.input_content)
-        this.setState({
-            input_content: '',
-            open: false
-        })
+        this.close()
     }
     
-    close = () => { this.setState({open: false})}
+    close = () => {this.setState({
+        input_content: '',
+        open: false
+    })}
     render() {
         const { open } = this.state
         return (
