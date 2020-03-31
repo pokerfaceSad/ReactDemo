@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
-
+import MyButton from './MyButton'
 class TodoListHeader extends Component {
-    state = {header_content : "Todo Lists",
-             header_icon: "circular edit outline icon"}
+    state = {header_content : "Todo Lists"}
     change_header = () => {
         this.setState(
-            {header_content: "Click To Add Todo",
-             header_icon: "circular plus icon"})
+            {header_content: "Click To Add Todo"})
     }
     recover_header = () => {
         this.setState(
-            {header_content : "Todo Lists",
-             header_icon: "circular edit outline icon"})
+            {header_content : "Todo Lists"})
     }
     render() {
-        const show_input_modal = this.props.show_input_modal
         return (
-        <div className="ui center aligned big icon header">
-            <button 
-                onMouseOver={this.change_header}
-                onMouseOut={this.recover_header}
-                className='circular ui icon button'>
-                    <i onClick={show_input_modal} className={this.state.header_icon}></i>
-            </button>
-            <div className='content'>
-                {this.state.header_content}
+        <div className='ui centered grid'>
+            <div className='row'/>
+            <div className='row'>
+                <MyButton
+                    change_header={this.change_header}
+                    recover_header={this.recover_header}
+                    show_input_modal={this.props.show_input_modal}
+                />
+            </div>
+            <div className='row'>
+                <div className='ui large header'>
+                    {this.state.header_content}
+                </div>
             </div>
         </div>
         );

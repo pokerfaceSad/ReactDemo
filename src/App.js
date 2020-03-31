@@ -1,11 +1,11 @@
-import 'semantic-ui-css/semantic.min.css'
-
-
 import TodoListHeader from './TodoListHeader'
 import TodoList from './TodoList'
 import InputModal from "./InputModal";
 import './style.css'
 import React, { Component } from 'react';
+window.$ = window.jQuery = require('jquery')
+require('semantic-ui-css/semantic.css')
+require('semantic-ui-css/semantic.js')
 
 class App extends Component {
   constructor(props) {
@@ -39,15 +39,23 @@ class App extends Component {
   render() {
     return (
           <div className="App">
-              <div className="ui one column centered relaxed grid container">
+              <div className="ui centered relaxed grid container">
                   <div className="row"/>
                   <div className="row"/>
-                  <div className="border-1 ten wide column">
-                    <TodoListHeader show_input_modal={this.show_input_modal}/>
-                    <TodoList
-                      todoListContents={this.state.todoListContents}
-                      mark_item_done={this.mark_item_done}
-                    />
+                  <div className='row'>
+                    <div className="border-1 ten wide column">
+                      <div className='ui centered grid'>
+                        <div className='ten wide column'>
+                        <TodoListHeader show_input_modal={this.show_input_modal}/>
+                        </div>
+                      </div>
+                      <div className='row'>
+                      <TodoList
+                        todoListContents={this.state.todoListContents}
+                        mark_item_done={this.mark_item_done}
+                      />
+                      </div>
+                    </div>
                   </div>
               </div>
               <InputModal add_todo_item={this.add_todo_item} ref='input_modal'/>
